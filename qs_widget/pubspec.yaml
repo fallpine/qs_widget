@@ -1,6 +1,6 @@
 name: qs_widget
 description: "自定义的控件"
-version: 1.0.0
+version: 1.0.1
 homepage: "https://github.com/fallpine/qs_widget"
 
 environment:
