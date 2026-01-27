@@ -12,7 +12,9 @@ class Button extends StatelessWidget {
     this.selectedBackgroundColor,
     this.disabledBackgroundColor,
     this.isCircle = false,
-    this.radius,
+    this.isClipsToBounds = true,
+    this.outerRadius,
+    this.innerRadius,
     this.border,
     this.boxShadows,
     this.gradient,
@@ -36,7 +38,9 @@ class Button extends StatelessWidget {
   final Color? selectedBackgroundColor;
   final Color? disabledBackgroundColor;
   final bool isCircle;
-  final BorderRadius? radius;
+  final bool isClipsToBounds;
+  final BorderRadius? outerRadius;
+  final BorderRadius? innerRadius; // 主要用于图片设置圆角
   final BoxBorder? border;
   final List<BoxShadow>? boxShadows;
   final Gradient? gradient;
@@ -68,7 +72,9 @@ class Button extends StatelessWidget {
                 : normalBackgroundColor)
           : disabledBackgroundColor ?? normalBackgroundColor,
       isCircle: isCircle,
-      radius: radius,
+      isClipsToBounds: isClipsToBounds,
+      outerRadius: outerRadius,
+      innerRadius: innerRadius,
       border: border,
       boxShadows: boxShadows,
       gradient: gradient,

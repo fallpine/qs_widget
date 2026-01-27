@@ -28,7 +28,9 @@ class ImageView extends StatelessWidget {
     this.margin,
     this.backgroundColor,
     this.isCircle = false,
-    this.radius,
+    this.isClipsToBounds = true,
+    this.outerRadius,
+    this.innerRadius,
     this.border,
     this.boxShadows,
     this.gradient,
@@ -49,7 +51,9 @@ class ImageView extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final Color? backgroundColor;
   final bool isCircle;
-  final BorderRadius? radius;
+  final bool isClipsToBounds;
+  final BorderRadius? outerRadius;
+  final BorderRadius? innerRadius;
   final BoxBorder? border;
   final List<BoxShadow>? boxShadows;
   final Gradient? gradient;
@@ -67,7 +71,9 @@ class ImageView extends StatelessWidget {
       margin: margin,
       color: backgroundColor,
       isCircle: isCircle,
-      radius: radius,
+      isClipsToBounds: isClipsToBounds,
+      outerRadius: outerRadius,
+      innerRadius: innerRadius,
       border: border,
       boxShadows: boxShadows,
       gradient: gradient,

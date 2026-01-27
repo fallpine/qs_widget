@@ -10,12 +10,14 @@ class Box extends StatelessWidget {
     this.margin,
     this.color,
     this.isCircle = false,
-    this.radius,
+    this.outerRadius,
+    this.innerRadius,
     this.border,
     this.boxShadows,
     this.gradient,
     this.constraints,
     this.clipBehavior = Clip.hardEdge,
+    this.isClipsToBounds = true,
     this.child,
   });
 
@@ -26,12 +28,14 @@ class Box extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final Color? color;
   final bool isCircle;
-  final BorderRadius? radius;
+  final BorderRadius? outerRadius;
+  final BorderRadius? innerRadius; // 主要用于图片设置圆角
   final BoxBorder? border;
   final List<BoxShadow>? boxShadows;
   final Gradient? gradient;
   final BoxConstraints? constraints;
   final Clip clipBehavior;
+  final bool isClipsToBounds;
   final Widget? child;
 
   /// Widget
@@ -45,14 +49,21 @@ class Box extends StatelessWidget {
       decoration: BoxDecoration(
         shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
         color: color,
-        borderRadius: isCircle ? null : radius,
+        borderRadius: isCircle ? null : outerRadius ?? innerRadius,
         border: border,
         boxShadow: boxShadows,
         gradient: gradient,
       ),
       constraints: constraints,
       clipBehavior: clipBehavior, // 设置Clip行为
-      child: child,
+      child: isClipsToBounds
+          ? isCircle
+                ? ClipOval(child: child)
+                : ClipRRect(
+                    borderRadius: innerRadius ?? outerRadius ?? BorderRadius.zero,
+                    child: child,
+                  )
+          : child,
     );
   }
 }
