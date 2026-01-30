@@ -133,6 +133,7 @@ class RichLabel extends StatelessWidget {
     for (final entry in matchedStrings!.entries) {
       final pattern = entry.key;
       final style = entry.value;
+      if (pattern.isEmpty) continue;
 
       String searchText = style.ignoreCase ? text.toLowerCase() : text;
       String searchPattern = style.ignoreCase ? pattern.toLowerCase() : pattern;
