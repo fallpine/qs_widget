@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+/// 提供尺寸、间距、背景、边框、圆角和裁剪能力的容器组件。
 class Box extends StatelessWidget {
-  /// Func
+  /// 创建一个通用容器。
+  ///
+  /// [outerRadius] 用于外层装饰圆角，[innerRadius] 用于子组件裁剪圆角；
+  /// 当 [isCircle] 为 `true` 时，组件以圆形样式显示。
   const Box({
     super.key,
     this.width,
@@ -21,24 +25,51 @@ class Box extends StatelessWidget {
     this.child,
   });
 
-  /// Property
+  /// 容器宽度。
   final double? width;
+
+  /// 容器高度。
   final double? height;
+
+  /// 容器内边距。
   final EdgeInsetsGeometry? padding;
+
+  /// 容器外边距。
   final EdgeInsetsGeometry? margin;
+
+  /// 容器背景颜色。
   final Color? color;
+
+  /// 是否使用圆形外观。
   final bool isCircle;
+
+  /// 外层装饰圆角。
   final BorderRadius? outerRadius;
-  final BorderRadius? innerRadius; // 主要用于图片设置圆角
+
+  /// 子组件的裁剪圆角，主要用于图片等内容。
+  final BorderRadius? innerRadius;
+
+  /// 容器边框。
   final BoxBorder? border;
+
+  /// 容器阴影列表。
   final List<BoxShadow>? boxShadows;
+
+  /// 容器背景渐变。
   final Gradient? gradient;
+
+  /// 容器的额外尺寸约束。
   final BoxConstraints? constraints;
+
+  /// 容器自身的裁剪方式。
   final Clip clipBehavior;
+
+  /// 是否裁剪超出边界的子组件。
   final bool isClipsToBounds;
+
+  /// 容器中显示的子组件。
   final Widget? child;
 
-  /// Widget
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,7 +91,8 @@ class Box extends StatelessWidget {
           ? isCircle
                 ? ClipOval(child: child)
                 : ClipRRect(
-                    borderRadius: innerRadius ?? outerRadius ?? BorderRadius.zero,
+                    borderRadius:
+                        innerRadius ?? outerRadius ?? BorderRadius.zero,
                     child: child,
                   )
           : child,

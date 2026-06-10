@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:qs_widget/box.dart';
 
+/// 支持普通、选中和禁用状态的按钮组件。
 class Button extends StatelessWidget {
+  /// 创建一个多状态按钮。
+  ///
+  /// [normalChild]、[selectedChild] 和 [disabledChild] 分别对应不同状态的内容；
+  /// [onTap] 仅在 [isEnabled] 为 `true` 时触发。
   const Button({
     super.key,
     this.width,
@@ -27,36 +32,67 @@ class Button extends StatelessWidget {
     this.onTap,
   });
 
-  // 基础属性
+  /// 按钮宽度。
   final double? width;
+
+  /// 按钮高度。
   final double? height;
+
+  /// 按钮内边距。
   final EdgeInsetsGeometry? padding;
+
+  /// 按钮外边距。
   final EdgeInsetsGeometry? margin;
 
-  // 样式相关
+  /// 普通状态下的背景颜色。
   final Color? normalBackgroundColor;
+
+  /// 选中状态下的背景颜色。
   final Color? selectedBackgroundColor;
+
+  /// 禁用状态下的背景颜色。
   final Color? disabledBackgroundColor;
+
+  /// 是否使用圆形外观。
   final bool isCircle;
+
+  /// 是否裁剪超出按钮边界的内容。
   final bool isClipsToBounds;
+
+  /// 按钮外层装饰圆角。
   final BorderRadius? outerRadius;
-  final BorderRadius? innerRadius; // 主要用于图片设置圆角
+
+  /// 按钮内容的裁剪圆角，主要用于图片等内容。
+  final BorderRadius? innerRadius;
+
+  /// 按钮边框。
   final BoxBorder? border;
+
+  /// 按钮阴影列表。
   final List<BoxShadow>? boxShadows;
+
+  /// 按钮背景渐变。
   final Gradient? gradient;
+
+  /// 按钮的额外尺寸约束。
   final BoxConstraints? constraints;
 
-  // 选中状态
+  /// 按钮当前是否处于选中状态。
   final bool isSelected;
-  // 禁用状态
+
+  /// 按钮当前是否可用。
   final bool isEnabled;
 
-  // child
+  /// 普通状态下显示的子组件。
   final Widget? normalChild;
+
+  /// 选中状态下显示的子组件，未设置时使用 [normalChild]。
   final Widget? selectedChild;
+
+  /// 禁用状态下显示的子组件，未设置时使用 [normalChild]。
   final Widget? disabledChild;
 
-  // 点击回调
+  /// 按钮点击回调。
   final VoidCallback? onTap;
 
   @override
@@ -90,6 +126,7 @@ class Button extends StatelessWidget {
   }
 }
 
+/// [Button] 内部使用的透明基础按钮样式。
 ButtonStyle kBaseButtonStyle = ButtonStyle(
   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
   minimumSize: WidgetStateProperty.all(Size.zero),
@@ -98,6 +135,8 @@ ButtonStyle kBaseButtonStyle = ButtonStyle(
   elevation: WidgetStateProperty.all(0),
   splashFactory: NoSplash.splashFactory,
   overlayColor: WidgetStateProperty.all(Colors.transparent),
-  shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))),
+  shape: WidgetStateProperty.all(
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+  ),
   backgroundColor: WidgetStateProperty.all(Colors.transparent),
 );
