@@ -89,10 +89,10 @@ class ImageView extends StatelessWidget {
   final bool isClipsToBounds;
 
   /// 图片容器外层装饰圆角。
-  final BorderRadius? outerRadius;
+  final BorderRadiusGeometry? outerRadius;
 
   /// 图片内容的裁剪圆角。
-  final BorderRadius? innerRadius;
+  final BorderRadiusGeometry? innerRadius;
 
   /// 图片容器边框。
   final BoxBorder? border;

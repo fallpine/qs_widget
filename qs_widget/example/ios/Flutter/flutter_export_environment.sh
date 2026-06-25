@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/jxh_2/Soft/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/jxh_2/Desktop/flutter_plugin/qs_widget/qs_widget/example"
+export "FLUTTER_ROOT=/Volumes/S7/DeveloperCache/fvm/versions/3.41.9"
+export "FLUTTER_APPLICATION_PATH=/Users/gyhdev/Desktop/flutter_plugin/qs_widget/qs_widget/example"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"

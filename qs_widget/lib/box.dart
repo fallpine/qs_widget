@@ -44,10 +44,10 @@ class Box extends StatelessWidget {
   final bool isCircle;
 
   /// 外层装饰圆角。
-  final BorderRadius? outerRadius;
+  final BorderRadiusGeometry? outerRadius;
 
   /// 子组件的裁剪圆角，主要用于图片等内容。
-  final BorderRadius? innerRadius;
+  final BorderRadiusGeometry? innerRadius;
 
   /// 容器边框。
   final BoxBorder? border;

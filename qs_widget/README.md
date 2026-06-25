@@ -14,7 +14,7 @@
 
 ```yaml
 dependencies:
-  qs_widget: ^1.0.3
+  qs_widget: ^1.0.5
 ```
 
 然后执行：

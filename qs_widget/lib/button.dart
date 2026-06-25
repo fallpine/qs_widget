@@ -60,10 +60,10 @@ class Button extends StatelessWidget {
   final bool isClipsToBounds;
 
   /// 按钮外层装饰圆角。
-  final BorderRadius? outerRadius;
+  final BorderRadiusGeometry? outerRadius;
 
   /// 按钮内容的裁剪圆角，主要用于图片等内容。
-  final BorderRadius? innerRadius;
+  final BorderRadiusGeometry? innerRadius;
 
   /// 按钮边框。
   final BoxBorder? border;
