@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 /// 提供尺寸、间距、背景、边框、圆角和裁剪能力的容器组件。
 class Box extends StatelessWidget {
@@ -91,11 +92,54 @@ class Box extends StatelessWidget {
           ? isCircle
                 ? ClipOval(child: child)
                 : ClipRRect(
-                    borderRadius:
-                        innerRadius ?? outerRadius ?? BorderRadius.zero,
+                    borderRadius: _clipBorderRadius(context),
                     child: child,
                   )
           : child,
     );
   }
+
+  BorderRadius _clipBorderRadius(BuildContext context) {
+    final radius = (innerRadius ?? outerRadius ?? BorderRadius.zero).resolve(
+      Directionality.maybeOf(context) ?? TextDirection.ltr,
+    );
+    final border = this.border;
+    if (border == null) {
+      return radius;
+    }
+
+    final dimensions = border.dimensions.resolve(
+      Directionality.maybeOf(context) ?? TextDirection.ltr,
+    );
+
+    return BorderRadius.only(
+      topLeft: Radius.elliptical(
+        math.max(0.0, radius.topLeft.x - _ceilBorderWidth(dimensions.left)),
+        math.max(0.0, radius.topLeft.y - _ceilBorderWidth(dimensions.top)),
+      ),
+      topRight: Radius.elliptical(
+        math.max(0.0, radius.topRight.x - _ceilBorderWidth(dimensions.right)),
+        math.max(0.0, radius.topRight.y - _ceilBorderWidth(dimensions.top)),
+      ),
+      bottomRight: Radius.elliptical(
+        math.max(
+          0.0,
+          radius.bottomRight.x - _ceilBorderWidth(dimensions.right),
+        ),
+        math.max(
+          0.0,
+          radius.bottomRight.y - _ceilBorderWidth(dimensions.bottom),
+        ),
+      ),
+      bottomLeft: Radius.elliptical(
+        math.max(0.0, radius.bottomLeft.x - _ceilBorderWidth(dimensions.left)),
+        math.max(
+          0.0,
+          radius.bottomLeft.y - _ceilBorderWidth(dimensions.bottom),
+        ),
+      ),
+    );
+  }
+
+  double _ceilBorderWidth(double value) => value.ceilToDouble();
 }

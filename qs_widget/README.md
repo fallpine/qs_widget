@@ -14,7 +14,7 @@
 
 ```yaml
 dependencies:
-  qs_widget: ^1.0.5
+  qs_widget: ^1.0.6
 ```
 
 然后执行：
@@ -33,7 +33,7 @@ import 'package:qs_widget/label.dart';
 
 ## Box
 
-`Box` 是支持尺寸、间距、背景、边框、圆角、阴影、渐变和内容裁剪的通用容器。
+`Box` 是支持尺寸、间距、背景、边框、圆角、阴影、渐变、约束和内容裁剪的通用容器。
 
 ```dart
 import 'package:flutter/material.dart';
@@ -42,9 +42,13 @@ import 'package:qs_widget/box.dart';
 const Box(
   width: 200,
   height: 100,
-  padding: EdgeInsets.all(16),
+  padding: EdgeInsetsDirectional.all(16),
   color: Colors.white,
-  outerRadius: BorderRadius.all(Radius.circular(12)),
+  outerRadius: BorderRadiusDirectional.all(Radius.circular(12)),
+  innerRadius: BorderRadiusDirectional.all(Radius.circular(12)),
+  border: Border.fromBorderSide(
+    BorderSide(color: Colors.black12),
+  ),
   boxShadows: [
     BoxShadow(
       color: Colors.black12,
@@ -57,7 +61,9 @@ const Box(
 ```
 
 设置 `isCircle: true` 可以创建圆形容器。`outerRadius` 控制外层装饰圆角，
-`innerRadius` 控制子组件的裁剪圆角。
+`innerRadius` 控制子组件的裁剪圆角。圆角参数使用 `BorderRadiusGeometry`，
+可以传入 `BorderRadiusDirectional` 适配 RTL 布局。存在边框时，内容裁剪圆角会结合边框宽度计算，
+避免子组件内容覆盖到边框区域。
 
 ## Button
 
