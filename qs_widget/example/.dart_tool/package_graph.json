@@ -60,7 +60,7 @@
     },
     {
       "name": "qs_widget",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "dependencies": [
         "auto_size_text",
         "cached_network_image",

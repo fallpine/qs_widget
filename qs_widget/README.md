@@ -1,7 +1,7 @@
 # qs_widget
 
 `qs_widget` 是一个 Flutter 常用 UI 组件库，提供容器、按钮、文本、富文本、
-输入框、图片、开关、页面保活和全局浮层等组件。
+输入框、图片、开关、键盘避让、页面保活和全局浮层等组件。
 
 ## 环境要求
 
@@ -14,7 +14,7 @@
 
 ```yaml
 dependencies:
-  qs_widget: ^1.0.6
+  qs_widget: ^1.0.7
 ```
 
 然后执行：
@@ -206,6 +206,37 @@ TextView(
 
 当 `keyboardType` 为 `TextInputType.number` 时，组件只允许输入数字。
 默认隐藏字符计数器，可通过 `isShowCounterText: true` 显示。
+
+## KeyboardAvoidanceView
+
+`KeyboardAvoidanceView` 仅移动其内部被键盘遮挡的输入区域，不会将整个页面向上顶起。
+使用时需要将页面的 `resizeToAvoidBottomInset` 设置为 `false`，并确保组件的父布局
+有足够空间供内容上移。
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:qs_widget/keyboard_avoidance_view.dart';
+
+Scaffold(
+  resizeToAvoidBottomInset: false,
+  body: KeyboardAvoidanceView(
+    spacing: 16,
+    duration: const Duration(milliseconds: 250),
+    curve: Curves.easeOutCubic,
+    child: const Column(
+      children: [
+        Spacer(),
+        TextField(),
+        SizedBox(height: 24),
+      ],
+    ),
+  ),
+)
+```
+
+当获得焦点的输入框位于组件内部时，组件会优先滚动内部的垂直滚动视图；
+滚动距离不足时，再将剩余内容向上平移。可通过 `enabled` 动态启用或关闭避让，
+通过 `spacing` 设置输入框与键盘之间的额外间距。
 
 ## ImageView
 
